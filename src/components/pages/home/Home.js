@@ -12,11 +12,6 @@ import { Pagination } from "swiper";
 
 import 'swiper/swiper.min.css'
 
-
-function Collection(data){
-
-}
-
 export default function Home() {
 
     const navigate = useNavigate();
@@ -51,46 +46,47 @@ export default function Home() {
             
             <Container>
                 <Heading>Suas Coleções</Heading>
+
                 <Divider />
 
-                
                 <Swiper
                     slidesPerView={3}
-                    spaceBetween={30}
                     pagination={{
                         clickable: true,
                     }}
                     breakpoints={{
                         640: {
                         slidesPerView: 2,
-                        spaceBetween: 20,
                         },
                         768: {
                         slidesPerView: 3,
-                        spaceBetween: 40,
                         },
                         1024: {
-                        slidesPerView: 5,
-                        spaceBetween: 50,
+                        slidesPerView: 4,
                         },
                     }}
-                    
                 >   
                     {collections === null ? (<div className="loading">Carregando...</div>) : (
                         collections.map( collection => 
                             <SwiperSlide>
                                 <Link to={`/myCollecton/${collection.id}`}>
-                                    <CollectionCard bkgUrl={collection.coverImg}>
-                                        <h4>{collection.name}</h4>
-                                    </CollectionCard>
+                                    <CollectionCardContainer>
+                                        <CollectionCard bkgUrl={collection.coverImg}>
+                                            <h4>{collection.name}</h4>
+                                        </CollectionCard>
+                                    </CollectionCardContainer>
                                 </Link>                      
                             </SwiperSlide>
                         )
                     )}
                 </Swiper>
                
-                <NewCollecton>
+                <Divider />
 
+                <NewCollecton>
+                    <Link to={`/new-collecton/`} className="btn">
+                        Criar Coleção
+                    </Link>
                 </NewCollecton>
             </Container>
         </>
@@ -98,9 +94,15 @@ export default function Home() {
 }
 const Container = styled.div`
 	width: 100%;
+    height: auto;
+    box-sizing: border-box;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 50px;
+
+    a{
+        text-decoration: none;
+    }
 `;
 const Heading = styled.h1`
 	font-size: 26px;
@@ -129,13 +131,18 @@ const CollectionCard = styled.div`
         font-weight: 500px;
         text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.9);
     }
-    a{
-        text-decoration: none;
-    }
+
 `;
 const NewCollecton = styled.div`
-	height: 200px;
+	padding-top: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    a{
+        width: 50%;
+        
+    }
+`;
+const CollectionCardContainer = styled.div`
+	padding: 30px;
 `;
