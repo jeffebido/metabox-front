@@ -5,6 +5,13 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {useAuth} from "../../../providers/Auth"; 
 import Header from "../../layout/Header"; 
+import Divider from "../../layout/Divider"; 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { Pagination } from "swiper";
+
+import 'swiper/swiper.min.css'
+
 
 function Collection(data){
 
@@ -19,7 +26,7 @@ export default function Home() {
 
     const API_URL = process.env.REACT_APP_API_URL;
 
-    const [collections, setCollections] = useState();
+    const [collections, setCollections] = useState([]);
 
     useEffect(() => {
 
@@ -32,6 +39,7 @@ export default function Home() {
         promise.then(response => {
 
             setCollections(response.data);
+
         });
         
     }, []);
@@ -40,15 +48,94 @@ export default function Home() {
 
         <>  
             <Header />
+            
+            <Container>
+                <Heading>Suas Coleções</Heading>
+                <Divider />
+
+                
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    breakpoints={{
+                        640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                        },
+                        768: {
+                        slidesPerView: 3,
+                        spaceBetween: 40,
+                        },
+                        1024: {
+                        slidesPerView: 5,
+                        spaceBetween: 50,
+                        },
+                    }}
+                    
+                >   
+                    {collections === null ? (<div className="loading">Carregando...</div>) : (
+                        collections.map( collection => 
+                            <SwiperSlide>
+                                <Link to={`/myCollecton/${collection.id}`}>
+                                    <CollectionCard bkgUrl={collection.coverImg}>
+                                        <h4>{collection.name}</h4>
+                                    </CollectionCard>
+                                </Link>                      
+                            </SwiperSlide>
+                        )
+                    )}
+                </Swiper>
+               
+                <NewCollecton>
+
+                </NewCollecton>
+            </Container>
         </>
     );
 }
 const Container = styled.div`
 	width: 100%;
-    height: 100vh;
-	background: #8C11BE;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+`;
+const Heading = styled.h1`
+	font-size: 26px;
+    font-weight: 700;
+    line-height: 30px;
+    width: 100%;
+`;
+const CollectionCard = styled.div`
+	width: 100%;
+    height: 200px;
+    background: #000;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url( ${(props) => props.bkgUrl} );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 18px 18px 20px #D1D9E6, -18px -18px 20px #FFFFFF;
+    color: #fff;
+    h4{
+        font-size: 20px;
+        font-weight: 500px;
+        text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.9);
+    }
+    a{
+        text-decoration: none;
+    }
+`;
+const NewCollecton = styled.div`
+	height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

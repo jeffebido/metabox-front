@@ -12,10 +12,7 @@ export const AuthProvider = (props) => {
         
          
           
-        if (userTokenStorage) {
 
-            setToken(JSON.parse(userTokenStorage));
-        }
          
 
     }, []);

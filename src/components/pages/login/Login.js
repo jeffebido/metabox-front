@@ -14,13 +14,7 @@ export default function Login() {
     const [formPassword, setFormPassword] = useState("");
 
 
-    useEffect(() => {
-        
-        if(token){
-            navigate("/home");
-        }
-
-    }, []);
+    
 
     function enviaForm (event) {
 
@@ -36,7 +30,7 @@ export default function Login() {
 
             setToken(response.data);//Salva token no Contexto
 
-            localStorage.setItem("userToken", JSON.stringify(response.data));
+            //localStorage.setItem("userToken", JSON.stringify(response.data));
 
             navigate("/home");
             

@@ -42,13 +42,13 @@ const Container = styled.div`
     color: #000;
     padding-left: 50px;
     padding-right: 50px;
-    border-bottom: 1px solid #d7dee2;
+    background: #E3E6EC;
+    box-shadow: 18px 18px 20px #D1D9E6, -18px -18px 20px #FFFFFF;
 `;
-const Hello = styled.p`
+const Hello = styled.div`
     font-size: 20px;
     display: flex;
     justify-content: center;
-    
     strong{
         font-weight: 800;
     }
@@ -60,4 +60,5 @@ const Avatar = styled.div`
     background: url( ${(props) => props.avatarUrl} );
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 `;
