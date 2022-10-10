@@ -4,7 +4,7 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => { 
 
-    const userStorage = localStorage.getItem("user");
+    const userTokenStorage = localStorage.getItem("userToken");
     
     const [token, setToken] = useState();
     
@@ -12,9 +12,9 @@ export const AuthProvider = (props) => {
         
          
           
-        if (userStorage) {
+        if (userTokenStorage) {
 
-            setToken(JSON.parse(userStorage));
+            setToken(JSON.parse(userTokenStorage));
         }
          
 

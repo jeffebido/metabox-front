@@ -32,10 +32,15 @@ export default function SignUp() {
             navigate("/");
         } )
         .catch((err) => {
-
-            console.error(err);
-            alert("Dados inválidos!");
-            
+            if (err.response) {
+                switch (err.response.status) {
+                    case 409:
+                        alert("Email já cadastrado");
+                      break;
+                    default:
+                        alert("Dados inválidos!");
+                }
+            }
         });
 	}
 

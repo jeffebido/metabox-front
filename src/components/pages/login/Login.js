@@ -8,12 +8,20 @@ export default function Login() {
 
     const navigate = useNavigate();
 
-    const {setToken} = useAuth([]);
+    const {setToken, token} = useAuth([]);
 
     const [formEmail, setFormEmail] = useState("");
     const [formPassword, setFormPassword] = useState("");
 
-    
+
+    useEffect(() => {
+        
+        if(token){
+            navigate("/home");
+        }
+
+    }, []);
+
     function enviaForm (event) {
 
         event.preventDefault();
@@ -28,8 +36,7 @@ export default function Login() {
 
             setToken(response.data);//Salva token no Contexto
 
-            //localStorage.setItem("user", JSON.stringify( response.data));
-
+            localStorage.setItem("userToken", JSON.stringify(response.data));
 
             navigate("/home");
             
@@ -79,7 +86,6 @@ const Container = styled.div`
 `;
 const Logo = styled.div`
 	font-family: 'Raleway', sans-serif;
-    color: #fff;
     font-size: 60px;
     margin-bottom: 50px;
     color: #388efd;
