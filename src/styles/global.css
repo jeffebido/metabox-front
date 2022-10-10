@@ -1,0 +1,40 @@
+/* GLOBAL */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, strong, a, input, button{
+	font-family: 'Raleway', sans-serif;
+	box-sizing: border-box;
+}
+html, body{
+	background: #ECF0F3;
+}
+input{
+	height: 60px;
+	width: 100%;
+	background: #FFFFFF;
+	border-radius: 20px;
+	padding: 20px;
+	font-size: 20px;
+	border: none;
+    box-shadow: 8px 8px 10px #D1D9E6;
+}
+input::placeholder{
+	color: #7E7E7E;
+}
+input::focus{
+
+}
+.btn{
+	height: 60px;
+	width: 100%;
+	border-radius: 20px;
+	color: #FFFFFF;
+	font-size: 20px;
+	line-height: 23px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	cursor: pointer;
+    box-shadow: 15px 15px 20px #adbdd6;
+    background: rgb(38,103,255);
+    background: linear-gradient(21deg, rgba(38,103,255,1) 0%, rgba(63,142,252,1) 60%, rgba(135,191,255,1) 100%);
+}
