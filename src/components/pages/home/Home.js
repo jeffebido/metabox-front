@@ -69,7 +69,7 @@ export default function Home() {
                     {collections === null ? (<div className="loading">Carregando...</div>) : (
                         collections.map( collection => 
                             <SwiperSlide>
-                                <Link to={`/myCollecton/${collection.id}`}>
+                                <Link to={`/my-collecton/${collection.id}`}>
                                     <CollectionCardContainer>
                                         <CollectionCard bkgUrl={collection.coverImg}>
                                             <h4>{collection.name}</h4>

@@ -5,7 +5,8 @@ import Home from "./pages/home/Home";
 import SignUp from "./pages/sign-up/SignUp";
 import Login from "./pages/login/Login";
 import NewCollection from "./pages/collections/NewCollection";
-
+import MyCollection from "./pages/collections/MyCollection";
+import CollectionModels from "./public/CollectionModels";
 export default function App() {
 
     return (
@@ -17,6 +18,8 @@ export default function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/new-collecton" element={<NewCollection />} />
+                        <Route path="/my-collecton/:collectionId" element={<MyCollection />} />
+                        <Route path="/collections/:slug" element={<CollectionModels />} />
                         <Route path="/" element={<Login />} />
                         
                     </Routes> 
